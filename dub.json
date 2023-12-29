@@ -1,0 +1,48 @@
+{
+	"authors": [
+		"Rakshika, Siyuan, Yilin, Sreekar"
+	],
+	"copyright": "Copyright © 2023, mike",
+	"targetType": "executable",
+    "targetPath": "bin",
+    "configurations":[
+    	{	
+			"name":"executable"      
+		},
+		{
+            "name":"unittest",
+            "preBuildCommands": ["dub run unit-threaded -c gen_ut_main -- -f bin/ut.d -d dub"],
+            "mainSourceFile":"bin/ut.d",
+            "excludedSourceFiles": ["source/app.d", "source/test_tilemap.d"],
+            "dependencies": {
+				"bindbc-sdl": "~>1.2.4",
+				"unit-threaded": "2.1.7"
+			}
+        },
+		{
+            "name":"unittest-graphical",
+            "preBuildCommands": ["dub run unit-threaded -c gen_ut_main -- -f bin/ut.d -d dub"],
+            "mainSourceFile":"bin/ut.d",
+            "excludedSourceFiles": [
+				"source/app.d", 
+				"source/test_TCPServer.d",
+				"source/test_camera.d", 
+				"source/test_packet_deserealize",
+				"source/test_packet_serealize",
+				"source/test_fileSharing"
+			],
+            "dependencies": {
+				"bindbc-sdl": "~>1.2.4",
+				"unit-threaded": "2.1.7"
+			}
+        }
+	
+	],
+	"dependencies": {
+		"bindbc-sdl": "~>1.2.4",
+		"unit-threaded": "2.1.7"
+	},
+	"description": "Multiuser application to navigate around Northeastern tunnels and chat with other users and share files.",
+	"license": "proprietary",
+	"name": "husky_tunnels"
+}
